@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Backend Mastery - 45 Day Learning Tracker">
+    <title>Backend Mastery - 45 Day Learning Tracker</title>
+    <style>
+        /* Premium Blue Design System */
+        :root {
+            --color-primary: #1E3A8A;
+            --color-secondary: #3B82F6;
+            --color-light-blue: #60A5FA;
+            --color-accent-blue: #0EA5E9;
+            --color-success: #10B981;
+            --color-warning: #F97316;
+            --color-background: #0A0E27;
+            --color-card-bg: #0F1629;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: #94A3B8;
+            --color-border: #1E293B;
+            --color-accent: #0EA5E9;
+            
+            --week-1-color: #3B82F6;
+            --week-2-color: #0EA5E9;
+            --week-3-color: #06B6D4;
+            --week-4-color: #0284C7;
+            --week-5-color: #3B82F6;
+            --week-6-color: #1E40AF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #000000 0%, #7701fd 50%, #000000 100%);
+            padding: 32px 20px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5), 0 0 60px rgba(14, 165, 233, 0.3);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header-icon {
+            font-size: 32px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6, #0EA5E9);
+            color: white;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0655fe, #0284C7);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 40px rgba(14, 165, 233, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-success:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* Dashboard Stats */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(2, 96, 248, 0.15), rgba(14, 165, 233, 0.1));
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid rgba(0, 0, 0, 0.7);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 1, 0.4), 0 0 30px rgba(14, 165, 233, 0.3);
+            border-color: rgba(14, 165, 233, 0.5);
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+        
+        /* Progress Circle */
+        .progress-circle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .progress-circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .progress-circle svg {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 12;
+        }
+        
+        .progress-circle-fill {
+            fill: none;
+            stroke: url(#blueGradient);
+            stroke-width: 12;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+        }
+        
+        .progress-circle-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .progress-percentage {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .progress-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Overall Progress Bar */
+        .overall-progress {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            height: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .overall-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3B82F6 0%, #0EA5E9 50%, #06B6D4 100%);
+            transition: width 0.5s ease;
+            border-radius: 50px;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .overall-progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Motivational Message */
+        .motivation-message {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-top: 16px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 20px;
+        }
+        
+        /* Week Cards Grid */
+        .weeks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 24px;
+        }
+        
+        /* Week Card */
+        .week-card {
+            background: linear-gradient(135deg, rgba(15, 22, 41, 0.95), rgba(30, 64, 175, 0.1));
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .week-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.4);
+            border-color: rgba(14, 165, 233, 0.6);
+        }
+        
+        .week-header {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(14, 165, 233, 0.08) 100%);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            user-select: none;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .week-header:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(14, 165, 233, 0.15) 100%);
+            box-shadow: inset 0 0 30px rgba(59, 130, 246, 0.2);
+        }
+        
+        .week-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .week-title-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .week-badge {
+            background: linear-gradient(135deg, var(--week-color), rgba(255, 255, 255, 0.1));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 20px var(--week-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .week-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+        
+        .week-icon {
+            font-size: 24px;
+        }
+        
+        .week-toggle {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            transition: transform 0.3s ease;
+        }
+        
+        .week-toggle.expanded {
+            transform: rotate(180deg);
+        }
+        
+        .week-progress-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .week-progress-bar-container {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .week-progress-bar {
+            height: 100%;
+            background: var(--week-color);
+            transition: width 0.3s ease;
+            border-radius: 50px;
+        }
+        
+        .week-percentage {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            min-width: 45px;
+            text-align: right;
+        }
+        
+        /* Week Content */
+        .week-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .week-content.expanded {
+            max-height: 5000px;
+        }
+        
+        /* Day Item */
+        .day-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        
+        .day-item:last-child {
+            border-bottom: none;
+        }
+        
+        .day-item:hover {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), rgba(14, 165, 233, 0.1));
+            box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .day-item.completed {
+            opacity: 0.6;
+        }
+        
+        .day-item.completed .day-text {
+            text-decoration: line-through;
+        }
+        
+        /* Custom Checkbox */
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.05);
+            margin-top: 2px;
+        }
+        
+        .custom-checkbox:hover {
+            border-color: #3B82F6;
+            background: rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .custom-checkbox.checked {
+            background: linear-gradient(135deg, #3B82F6, #0EA5E9);
+            border-color: #0EA5E9;
+            animation: checkboxPop 0.3s ease;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .checkbox-icon {
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+        
+        .custom-checkbox.checked .checkbox-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Day Content */
+        .day-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .day-number {
+            background: linear-gradient(135deg, var(--week-color), rgba(255, 255, 255, 0.1));
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 15px var(--week-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .day-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+        
+        .day-topics {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        
+        .day-resources {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, rgba(15, 22, 41, 0.98), rgba(30, 64, 175, 0.15));
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(59, 130, 246, 0.3);
+            animation: slideUp 0.3s ease;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+        }
+        
+        .modal-header {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--color-text-primary);
+        }
+        
+        .modal-body {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes checkboxPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.02); }
+            75% { transform: scale(0.98); }
+        }
+        
+        .week-card.week-completed {
+            animation: celebrate 0.6s ease;
+        }
+        
+        /* Progress Screen */
+        .progress-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--color-background);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .progress-screen.active {
+            display: block;
+        }
+        
+        .progress-header {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #0EA5E9 100%);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(14, 165, 233, 0.3);
+        }
+        
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .progress-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .progress-content {
+            padding: 24px 20px 100px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .progress-hero {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+        
+        .large-progress-circle {
+            position: relative;
+            width: 220px;
+            height: 220px;
+        }
+        
+        .large-progress-circle svg {
+            transform: rotate(-90deg);
+        }
+        
+        .large-progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .large-percentage {
+            font-size: 56px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3B82F6, #0EA5E9, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+        }
+        
+        .large-label {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-top: 8px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(14, 165, 233, 0.1));
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .stat-box-value {
+            font-size: 40px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3B82F6, #0EA5E9, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));
+        }
+        
+        .stat-box-label {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+        }
+        
+        .week-progress-list {
+            margin-bottom: 32px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--color-text-primary);
+        }
+        
+        .week-progress-item {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(14, 165, 233, 0.05));
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--week-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 15px rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .week-progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .week-progress-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+        
+        .week-progress-count {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+        
+        .week-progress-bar-wrapper {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            height: 10px;
+            overflow: hidden;
+        }
+        
+        .week-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--week-color), rgba(255, 255, 255, 0.1));
+            border-radius: 50px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px var(--week-color), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .achievements {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(14, 165, 233, 0.1));
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+        
+        .achievement-badges {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        
+        .achievement-badge {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(14, 165, 233, 0.2));
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .achievement-badge.unlocked {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(14, 165, 233, 0.4));
+            border-color: #0EA5E9;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+        }
+        
+        .achievement-badge.locked {
+            opacity: 0.4;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .weeks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .progress-circle {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .progress-percentage {
+                font-size: 36px;
+            }
+            
+            .weeks-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .week-title {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 12px;
+            }
+            
+            .header {
+                padding: 24px 12px;
+            }
+            
+            .header h1 {
+                font-size: 18px;
+            }
+            
+            .header-icon {
+                font-size: 24px;
+            }
+            
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .custom-checkbox {
+                min-width: 44px;
+                min-height: 44px;
+                width: 28px;
+                height: 28px;
+            }
+            
+            .day-item {
+                padding: 16px 12px;
+            }
+            
+            .week-header {
+                padding: 16px 12px;
+            }
+            
+            .motivation-message {
+                font-size: 16px;
+            }
+            
+            .modal-content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="header-top">
+                <div class="header-title">
+                    <span class="header-icon">🚀</span>
+                    <h1>Backend Mastery</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="showProgressScreen()">
+                        <span>📊</span> View Progress
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetProgress()">
+                        <span>🔄</span> Reset
+                    </button>
+                </div>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <span class="stat-value" id="totalDays">45</span>
+                    <span class="stat-label">Total Days</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="completedDays">0</span>
+                    <span class="stat-label">Completed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="remainingDays">45</span>
+                    <span class="stat-label">Remaining</span>
+                </div>
+            </div>
+            
+            <div class="overall-progress">
+                <div class="overall-progress-bar" id="overallProgressBar" style="width: 0%"></div>
+                <div class="overall-progress-text" id="overallProgressText">0% Complete</div>
+            </div>
+            
+            <div class="motivation-message" id="motivationMessage"></div>
+        </div>
+    </header>
+    
+    <main class="container" id="mainScreen">
+        <div class="weeks-grid" id="weeksContainer"></div>
+    </main>
+    
+    <!-- Progress Screen -->
+    <div class="progress-screen" id="progressScreen">
+        <div class="progress-header">
+            <button class="back-button" onclick="hideProgressScreen()">←</button>
+            <div class="progress-title">📊 Your Progress Dashboard</div>
+        </div>
+        <div class="progress-content">
+            <div class="progress-hero">
+                <div class="large-progress-circle">
+                    <svg width="220" height="220">
+                        <defs>
+                            <linearGradient id="blueGradientLarge" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#0EA5E9;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="progress-circle-bg" cx="110" cy="110" r="100" stroke-width="16"></circle>
+                        <circle class="progress-circle-fill" id="largeProgressCircle" cx="110" cy="110" r="100" stroke-width="16" stroke-dasharray="628" stroke-dashoffset="628" style="stroke: url(#blueGradientLarge)"></circle>
+                    </svg>
+                    <div class="large-progress-text">
+                        <div class="large-percentage" id="largePercentage">0%</div>
+                        <div class="large-label">Complete</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-box-value" id="progressCompleted">0</span>
+                    <span class="stat-box-label">Completed</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-box-value" id="progressRemaining">45</span>
+                    <span class="stat-box-label">Remaining</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-box-value" id="progressStreak">0</span>
+                    <span class="stat-box-label">Best Streak</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-box-value" id="progressTotal">45</span>
+                    <span class="stat-box-label">Total Days</span>
+                </div>
+            </div>
+            
+            <div class="week-progress-list">
+                <div class="section-title">Week by Week Progress</div>
+                <div id="weekProgressList"></div>
+            </div>
+            
+            <div class="achievements">
+                <div class="section-title">🏆 Achievements</div>
+                <div class="achievement-badges" id="achievementBadges"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Confirmation Modal -->
+    <div class="modal" id="resetModal">
+        <div class="modal-content">
+            <div class="modal-header">⚠️ Reset All Progress?</div>
+            <div class="modal-body">
+                Are you sure you want to clear all your progress? This action cannot be undone.
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeResetModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmReset()">Yes, Reset</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ============================================
+        // LOCAL STORAGE MANAGEMENT
+        // ============================================
+        
+        const TRACKER_STORAGE_KEY = 'backendMasteryTrackerData';
+        
+        // Learning Plan Data
+        const LEARNING_PLAN = [
+            {
+                weekNum: 1,
+                title: "Node.js Core (Basics to Express)",
+                icon: "⚙️",
+                color: "#3B82F6",
+                days: [
+                    { day: 1, title: "Install Node.js & JS Basics", topics: "Install Node.js, npm review, basic JS refresh (loops, arrays, functions)", resources: "W3Schools JS Tutorial" },
+                    { day: 2, title: "Node Modules", topics: "Learn require, module.exports, fs, path, and npm init", resources: "YouTube: Traversy Node Basics" },
+                    { day: 3, title: "Express Server Setup", topics: "Setup Express server & basic routes", resources: "Express Docs" },
+                    { day: 4, title: "Advanced Routing", topics: "Route parameters, query, middleware intro", resources: "Traversy Express Crash Course" },
+                    { day: 5, title: "CRUD Operations", topics: "CRUD routes using dummy data", resources: "Postman setup + testing" },
+                    { day: 6, title: "Project Structure", topics: "Folder structure (MVC model)", resources: "Practice small REST API" },
+                    { day: 7, title: "Week 1 Review Project", topics: "Review + build 'Book API'", resources: "Push to GitHub" }
+                ]
+            },
+            {
+                weekNum: 2,
+                title: "MongoDB + Authentication",
+                icon: "🗄️",
+                color: "#0EA5E9",
+                days: [
+                    { day: 8, title: "MongoDB Basics", topics: "MongoDB basics + connect with Node", resources: "MongoDB Learn Free" },
+                    { day: 9, title: "MongoDB CRUD", topics: "CRUD with MongoDB (insert, find, update, delete)", resources: "Mongoose docs" },
+                    { day: 10, title: "Data Modeling", topics: "Create User model + validation", resources: "Practice exercises" },
+                    { day: 11, title: "JWT Authentication", topics: "JWT Authentication – login/signup", resources: "YouTube: JWT Auth Node.js" },
+                    { day: 12, title: "Route Protection", topics: "Protect routes using middleware", resources: "Express middleware docs" },
+                    { day: 13, title: "Error Handling", topics: "Error handling + dotenv setup", resources: ".env config + validation" },
+                    { day: 14, title: "Mini Project 1", topics: "Mini Project: User Auth API (Node + MongoDB + JWT)", resources: "Host on Render.com" }
+                ]
+            },
+            {
+                weekNum: 3,
+                title: "Python + SQL Basics",
+                icon: "🐍",
+                color: "#06B6D4",
+                days: [
+                    { day: 15, title: "Python Fundamentals", topics: "Python setup + syntax, loops, datatypes", resources: "Bro Code Python Course" },
+                    { day: 16, title: "OOP in Python", topics: "Functions + OOPs (Class, Object)", resources: "Practice OOPs project" },
+                    { day: 17, title: "File Operations", topics: "File handling + exception handling", resources: "Practice read/write text" },
+                    { day: 18, title: "API Integration", topics: "Python requests module + APIs", resources: "Fetch data from any public API" },
+                    { day: 19, title: "SQL Fundamentals", topics: "SQL intro + CRUD + Joins", resources: "W3Schools SQL" },
+                    { day: 20, title: "Python + SQL", topics: "Connect Python + SQL (SQLite/MySQL)", resources: "Python sqlite3 module" },
+                    { day: 21, title: "Mini Project 2", topics: "Mini Project: Store API Data in SQL DB", resources: "Fetch + insert API data" }
+                ]
+            },
+            {
+                weekNum: 4,
+                title: "AWS Cloud Fundamentals",
+                icon: "☁️",
+                color: "#0284C7",
+                days: [
+                    { day: 22, title: "AWS Setup", topics: "Create AWS Free Tier account", resources: "AWS Free Tier" },
+                    { day: 23, title: "IAM Management", topics: "Learn IAM (users, roles, access keys)", resources: "AWS Console Practice" },
+                    { day: 24, title: "EC2 Instances", topics: "EC2 instance setup (Ubuntu Linux)", resources: "AWS EC2 Tutorial" },
+                    { day: 25, title: "SSH & Server Setup", topics: "SSH connect to EC2 + install Node", resources: "Practice CLI" },
+                    { day: 26, title: "S3 Storage", topics: "S3 bucket (upload/download files)", resources: "AWS S3 docs" },
+                    { day: 27, title: "AWS RDS", topics: "AWS RDS basics (SQL DB in cloud)", resources: "AWS RDS Tutorial" },
+                    { day: 28, title: "Lambda Functions", topics: "Lambda functions (Python code)", resources: "Create + run basic function" }
+                ]
+            },
+            {
+                weekNum: 5,
+                title: "Integrate & Build Cloud Project",
+                icon: "🚀",
+                color: "#3B82F6",
+                days: [
+                    { day: 29, title: "EC2 Deployment", topics: "Deploy Node app on EC2", resources: "Deploy Auth API from Week 2" },
+                    { day: 30, title: "S3 Integration", topics: "Connect Node app to S3 (file uploads)", resources: "AWS SDK practice" },
+                    { day: 31, title: "RDS Integration", topics: "Optional: Store data in RDS", resources: "AWS CLI / PGAdmin" },
+                    { day: 32, title: "Mini Project 3", topics: "Project 3: Node + AWS integration app", resources: "Deploy + test" }
+                ]
+            },
+            {
+                weekNum: 6,
+                title: "Final Projects & Interview Prep",
+                icon: "🎯",
+                color: "#1E40AF",
+                days: [
+                    { day: 33, title: "MERN Project Start", topics: "Build Full MERN Project (Task Manager / Notes App)", resources: "React + Node + MongoDB" },
+                    { day: 34, title: "MERN Development", topics: "Continue MERN Project", resources: "Add CRUD & Auth" },
+                    { day: 35, title: "MERN Deployment", topics: "Style & deploy MERN project (Render/Vercel)", resources: "Push to GitHub" },
+                    { day: 36, title: "Python + AWS Start", topics: "Build Python + AWS Project", resources: "Upload file → S3 → Lambda" },
+                    { day: 37, title: "Python + AWS Complete", topics: "Complete & test Python + AWS Project", resources: "Host or demo locally" },
+                    { day: 38, title: "Portfolio Building", topics: "Add both projects to GitHub portfolio", resources: "Update READMEs" },
+                    { day: 39, title: "Resume & LinkedIn", topics: "Update Resume + LinkedIn", resources: "Mention 3 projects + AWS skills" },
+                    { day: 40, title: "Backend Review", topics: "Revise Node.js + MongoDB + Python", resources: "Practice short coding tasks" },
+                    { day: 41, title: "AWS Review", topics: "Revise AWS (EC2, S3, IAM, Lambda)", resources: "AWS Console" },
+                    { day: 42, title: "SQL Practice", topics: "SQL query practice", resources: "LeetCode SQL" },
+                    { day: 43, title: "Mock Interview", topics: "Mock interview (with friend or solo)", resources: "Practice HR + tech" },
+                    { day: 44, title: "Final Checklist", topics: "Final polish + checklist review", resources: "Check all projects live" },
+                    { day: 45, title: "Launch Day", topics: "🎉 Done! Apply / Referral + Confidence Boost!", resources: "Start applying to positions" }
+                ]
+            }
+        ];
+        
+        // ============================================
+        // STORAGE FUNCTIONS
+        // ============================================
+        
+        function loadTrackerData() {
+            const data = localStorage.getItem(TRACKER_STORAGE_KEY);
+            return data ? JSON.parse(data) : new Set();
+        }
+        
+        function saveTrackerData(completedDays) {
+            const data = Array.from(completedDays);
+            localStorage.setItem(TRACKER_STORAGE_KEY, JSON.stringify(data));
+            console.log('✅ Progress saved to localStorage');
+        }
+        
+        // ============================================
+        // STATE MANAGEMENT
+        // ============================================
+        
+        let completedDays = new Set(loadTrackerData());
+        
+        // Initialize app
+        function init() {
+            renderWeeks();
+            updateAllProgress();
+        }
+        
+        // Render all weeks
+        function renderWeeks() {
+            const container = document.getElementById('weeksContainer');
+            container.innerHTML = '';
+            
+            LEARNING_PLAN.forEach((week, index) => {
+                const weekCard = createWeekCard(week, index);
+                container.appendChild(weekCard);
+            });
+        }
+        
+        // Create week card
+        function createWeekCard(week, weekIndex) {
+            const card = document.createElement('div');
+            card.className = 'week-card';
+            card.id = `week-${weekIndex}`;
+            card.style.setProperty('--week-color', week.color);
+            
+            // Week Header
+            const header = document.createElement('div');
+            header.className = 'week-header';
+            header.onclick = () => toggleWeek(weekIndex);
+            
+            const headerTop = document.createElement('div');
+            headerTop.className = 'week-header-top';
+            
+            const titleContainer = document.createElement('div');
+            titleContainer.className = 'week-title-container';
+            
+            const badge = document.createElement('div');
+            badge.className = 'week-badge';
+            badge.textContent = `Week ${week.weekNum}`;
+            
+            const icon = document.createElement('span');
+            icon.className = 'week-icon';
+            icon.textContent = week.icon;
+            
+            const title = document.createElement('div');
+            title.className = 'week-title';
+            title.textContent = week.title;
+            
+            titleContainer.appendChild(badge);
+            titleContainer.appendChild(icon);
+            titleContainer.appendChild(title);
+            
+            const toggle = document.createElement('span');
+            toggle.className = 'week-toggle expanded';
+            toggle.id = `toggle-${weekIndex}`;
+            toggle.textContent = '▼';
+            
+            headerTop.appendChild(titleContainer);
+            headerTop.appendChild(toggle);
+            
+            const progressInfo = document.createElement('div');
+            progressInfo.className = 'week-progress-info';
+            
+            const progressBarContainer = document.createElement('div');
+            progressBarContainer.className = 'week-progress-bar-container';
+            
+            const progressBar = document.createElement('div');
+            progressBar.className = 'week-progress-bar';
+            progressBar.id = `week-progress-${weekIndex}`;
+            progressBar.style.width = '0%';
+            
+            progressBarContainer.appendChild(progressBar);
+            
+            const percentage = document.createElement('div');
+            percentage.className = 'week-percentage';
+            percentage.id = `week-percentage-${weekIndex}`;
+            percentage.textContent = '0%';
+            
+            progressInfo.appendChild(progressBarContainer);
+            progressInfo.appendChild(percentage);
+            
+            header.appendChild(headerTop);
+            header.appendChild(progressInfo);
+            
+            // Week Content
+            const content = document.createElement('div');
+            content.className = 'week-content expanded';
+            content.id = `week-content-${weekIndex}`;
+            
+            week.days.forEach(day => {
+                const dayItem = createDayItem(day, week.color);
+                content.appendChild(dayItem);
+            });
+            
+            card.appendChild(header);
+            card.appendChild(content);
+            
+            return card;
+        }
+        
+        // Create day item
+        function createDayItem(day, weekColor) {
+            const item = document.createElement('div');
+            item.className = 'day-item';
+            item.id = `day-${day.day}`;
+            item.onclick = () => toggleDay(day.day);
+            item.setAttribute('tabindex', '0');
+            item.onkeydown = (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDay(day.day);
+                }
+            };
+            
+            // Checkbox
+            const checkbox = document.createElement('div');
+            checkbox.className = 'custom-checkbox';
+            checkbox.id = `checkbox-${day.day}`;
+            if (completedDays.has(day.day)) {
+                checkbox.classList.add('checked');
+            }
+            
+            const checkIcon = document.createElement('span');
+            checkIcon.className = 'checkbox-icon';
+            checkIcon.textContent = '✓';
+            
+            checkbox.appendChild(checkIcon);
+            
+            // Day Content
+            const content = document.createElement('div');
+            content.className = 'day-content';
+            content.style.setProperty('--week-color', weekColor);
+            
+            const dayHeader = document.createElement('div');
+            dayHeader.className = 'day-header';
+            
+            const dayNumber = document.createElement('div');
+            dayNumber.className = 'day-number';
+            dayNumber.textContent = `Day ${day.day}`;
+            
+            const dayTitle = document.createElement('div');
+            dayTitle.className = 'day-title';
+            dayTitle.textContent = day.title;
+            
+            dayHeader.appendChild(dayNumber);
+            dayHeader.appendChild(dayTitle);
+            
+            const topics = document.createElement('div');
+            topics.className = 'day-topics';
+            topics.innerHTML = day.topics;
+            
+            const resources = document.createElement('div');
+            resources.className = 'day-resources';
+            resources.innerHTML = `<span>📚</span> ${day.resources}`;
+            
+            content.appendChild(dayHeader);
+            content.appendChild(topics);
+            if (day.resources) {
+                content.appendChild(resources);
+            }
+            
+            item.appendChild(checkbox);
+            item.appendChild(content);
+            
+            // Set completed state on load
+            if (completedDays.has(day.day)) {
+                item.classList.add('completed');
+            }
+            
+            return item;
+        }
+        
+        // Toggle day completion
+        function toggleDay(dayNum) {
+            const dayItem = document.getElementById(`day-${dayNum}`);
+            const checkbox = document.getElementById(`checkbox-${dayNum}`);
+            
+            if (completedDays.has(dayNum)) {
+                completedDays.delete(dayNum);
+                dayItem.classList.remove('completed');
+                checkbox.classList.remove('checked');
+            } else {
+                completedDays.add(dayNum);
+                dayItem.classList.add('completed');
+                checkbox.classList.add('checked');
+            }
+            
+            // Save to localStorage
+            saveTrackerData(completedDays);
+            updateAllProgress();
+        }
+        
+        // Toggle week expansion
+        function toggleWeek(weekIndex) {
+            const content = document.getElementById(`week-content-${weekIndex}`);
+            const toggle = document.getElementById(`toggle-${weekIndex}`);
+            
+            content.classList.toggle('expanded');
+            toggle.classList.toggle('expanded');
+        }
+        
+        // Update all progress indicators
+        function updateAllProgress() {
+            const totalDays = 45;
+            const completed = completedDays.size;
+            const remaining = totalDays - completed;
+            const percentage = Math.round((completed / totalDays) * 100);
+            
+            // Update header stats
+            document.getElementById('completedDays').textContent = completed;
+            document.getElementById('remainingDays').textContent = remaining;
+            document.getElementById('overallProgressBar').style.width = `${percentage}%`;
+            document.getElementById('overallProgressText').textContent = `${percentage}% Complete`;
+            
+            // Update motivational message
+            updateMotivationalMessage(percentage);
+            
+            // Update each week's progress
+            LEARNING_PLAN.forEach((week, index) => {
+                updateWeekProgress(week, index);
+            });
+        }
+        
+        // Update week progress
+        function updateWeekProgress(week, weekIndex) {
+            const totalDays = week.days.length;
+            let completed = 0;
+            
+            week.days.forEach(day => {
+                if (completedDays.has(day.day)) {
+                    completed++;
+                }
+            });
+            
+            const percentage = Math.round((completed / totalDays) * 100);
+            
+            const progressBar = document.getElementById(`week-progress-${weekIndex}`);
+            const percentageEl = document.getElementById(`week-percentage-${weekIndex}`);
+            const weekCard = document.getElementById(`week-${weekIndex}`);
+            
+            if (progressBar) progressBar.style.width = `${percentage}%`;
+            if (percentageEl) percentageEl.textContent = `${percentage}%`;
+            
+            if (percentage === 100 && weekCard) {
+                weekCard.classList.add('week-completed');
+            } else if (weekCard) {
+                weekCard.classList.remove('week-completed');
+            }
+        }
+        
+        // Update motivational message
+        function updateMotivationalMessage(percentage) {
+            const messageEl = document.getElementById('motivationMessage');
+            let message = '';
+            
+            if (percentage === 0) {
+                message = '🌟 Ready to start your backend journey? Let\'s go!';
+            } else if (percentage <= 20) {
+                message = '💪 Great start! Keep the momentum going!';
+            } else if (percentage <= 50) {
+                message = '🔥 You\'re making excellent progress! Keep it up!';
+            } else if (percentage <= 80) {
+                message = '🚀 Amazing work! You\'re more than halfway there!';
+            } else if (percentage < 100) {
+                message = '⭐ Almost done! The finish line is in sight!';
+            } else {
+                message = '🎉 Congratulations! You\'ve completed the entire program!';
+            }
+            
+            messageEl.textContent = message;
+        }
+        
+        // Reset progress
+        function resetProgress() {
+            document.getElementById('resetModal').classList.add('active');
+        }
+        
+        // Close reset modal
+        function closeResetModal() {
+            document.getElementById('resetModal').classList.remove('active');
+        }
+        
+        // Confirm reset
+        function confirmReset() {
+            completedDays.clear();
+            saveTrackerData(completedDays);
+            
+            // Update all UI
+            for (let i = 1; i <= 45; i++) {
+                const dayItem = document.getElementById(`day-${i}`);
+                const checkbox = document.getElementById(`checkbox-${i}`);
+                if (dayItem && checkbox) {
+                    dayItem.classList.remove('completed');
+                    checkbox.classList.remove('checked');
+                }
+            }
+            
+            updateAllProgress();
+            closeResetModal();
+        }
+        
+        // Show progress screen
+        function showProgressScreen() {
+            document.getElementById('progressScreen').classList.add('active');
+            document.getElementById('mainScreen').style.display = 'none';
+            document.querySelector('.header').style.display = 'none';
+            updateProgressScreen();
+        }
+        
+        // Hide progress screen
+        function hideProgressScreen() {
+            document.getElementById('progressScreen').classList.remove('active');
+            document.getElementById('mainScreen').style.display = 'block';
+            document.querySelector('.header').style.display = 'block';
+        }
+        
+        // Update progress screen
+        function updateProgressScreen() {
+            const totalDays = 45;
+            const completed = completedDays.size;
+            const remaining = totalDays - completed;
+            const percentage = Math.round((completed / totalDays) * 100);
+            
+            // Update large circle
+            const circumference = 2 * Math.PI * 100;
+            const offset = circumference - (percentage / 100) * circumference;
+            document.getElementById('largeProgressCircle').style.strokeDashoffset = offset;
+            document.getElementById('largePercentage').textContent = `${percentage}%`;
+            
+            // Update stats
+            document.getElementById('progressCompleted').textContent = completed;
+            document.getElementById('progressRemaining').textContent = remaining;
+            document.getElementById('progressTotal').textContent = totalDays;
+            
+            // Calculate streak
+            const streak = calculateStreak();
+            document.getElementById('progressStreak').textContent = streak;
+            
+            // Update week progress list
+            renderWeekProgressList();
+            
+            // Update achievements
+            renderAchievements(percentage, streak);
+        }
+        
+        // Calculate best streak
+        function calculateStreak() {
+            if (completedDays.size === 0) return 0;
+            
+            const sortedDays = Array.from(completedDays).sort((a, b) => a - b);
+            let maxStreak = 1;
+            let currentStreak = 1;
+            
+            for (let i = 1; i < sortedDays.length; i++) {
+                if (sortedDays[i] === sortedDays[i - 1] + 1) {
+                    currentStreak++;
+                    maxStreak = Math.max(maxStreak, currentStreak);
+                } else {
+                    currentStreak = 1;
+                }
+            }
+            
+            return maxStreak;
+        }
+        
+        // Render week progress list
+        function renderWeekProgressList() {
+            const container = document.getElementById('weekProgressList');
+            container.innerHTML = '';
+            
+            LEARNING_PLAN.forEach(week => {
+                const totalDays = week.days.length;
+                let completed = 0;
+                
+                week.days.forEach(day => {
+                    if (completedDays.has(day.day)) {
+                        completed++;
+                    }
+                });
+                
+                const percentage = Math.round((completed / totalDays) * 100);
+                
+                const item = document.createElement('div');
+                item.className = 'week-progress-item';
+                item.style.setProperty('--week-color', week.color);
+                
+                item.innerHTML = `
+                    <div class="week-progress-header">
+                        <div class="week-progress-name">${week.icon} Week ${week.weekNum}: ${week.title}</div>
+                        <div class="week-progress-count">${completed}/${totalDays}</div>
+                    </div>
+                    <div class="week-progress-bar-wrapper">
+                        <div class="week-progress-fill" style="width: ${percentage}%"></div>
+                    </div>
+                `;
+                
+                container.appendChild(item);
+            });
+        }
+        
+        // Render achievements
+        function renderAchievements(percentage, streak) {
+            const container = document.getElementById('achievementBadges');
+            container.innerHTML = '';
+            
+            const achievements = [
+                { icon: '🌟', label: 'Getting Started', unlocked: percentage >= 10 },
+                { icon: '💪', label: 'Week Warrior', unlocked: percentage >= 25 },
+                { icon: '🔥', label: 'Halfway Hero', unlocked: percentage >= 50 },
+                { icon: '🚀', label: 'Almost There', unlocked: percentage >= 75 },
+                { icon: '🎉', label: 'Master Complete', unlocked: percentage >= 100 },
+                { icon: '⚡', label: 'Streak Master', unlocked: streak >= 7 }
+            ];
+            
+            achievements.forEach(achievement => {
+                const badge = document.createElement('div');
+                badge.className = `achievement-badge ${achievement.unlocked ? 'unlocked' : 'locked'}`;
+                badge.innerHTML = `<span>${achievement.icon}</span><span>${achievement.label}</span>`;
+                container.appendChild(badge);
+            });
+        }
+        
+        // Initialize on load
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
